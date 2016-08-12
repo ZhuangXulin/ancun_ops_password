@@ -1,0 +1,38 @@
+<%= form_for (@acsystem) , :url => { :action => @action } do |f| %>
+  <% if @acsystem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acsystem.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% @acsystem.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table border="1px" cellspacing="0px" cellpadding="0px">
+	<tr>
+		<td align="center" width="30%" bgcolor="#F7F7F7"><strong>(must input)<%= f.label :系统名称 %></strong></td>
+		<td width="70%"><%= f.text_field :system_name, size: 50 %></td>
+	</tr>
+	<tr>
+    	<td align="center" bgcolor="#F7F7F7"><strong><%= f.label :系统描述 %></strong></td>
+    	<td><%= f.text_field :system_desc, size: 50 %></td>
+	</tr>
+	
+	<tr>
+		<td align="center" bgcolor="#F7F7F7"><strong><%= f.label :系统IP地址 %></strong></td>
+		<td ><%= f.text_field :system_ip, size: 50 %></td>
+	</tr>
+	
+	<tr>
+    	<td align="center" bgcolor="#F7F7F7"><strong>(must input)<%= f.label :系统密码 %></strong></td>
+    	<td ><%= f.text_field :system_password, size: 50 %></td>
+	</tr>
+</table>
+<br>
+  <div class="actions">
+    <%= f.submit %>
+
+  </div>
+<% end %>

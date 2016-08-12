@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  system_name: MyString
+  system_desc: MyText
+  system_ip: MyText
+  system_password: MyText
+
+two:
+  system_name: MyString
+  system_desc: MyText
+  system_ip: MyText
+  system_password: MyText

@@ -1,0 +1,40 @@
+				<div class="tabs">
+					<div id="tab-1" class="tab">
+						<article>
+							<div class="text-section">
+								<h1><p id="notice"><%= @notice %></p></h1>
+							</div>
+							
+						<ul class="states" >
+							<h1>系统密码资料</h1>
+								<p>
+								  <strong>系统名称:</strong>
+								  <%= @acsystem.system_name %>
+								</p>
+								<p>
+								  <strong>系统描述:</strong>
+								  <%= @acsystem.system_desc %>
+								</p>
+								<p>
+								  <strong>系统IP地址:</strong>
+								  <%= @acsystem.system_ip %>
+								</p>
+								<p>
+								  <strong>系统密码:</strong>
+								  <%= @acsystem.system_password %>
+								</p>
+								<p>
+								  <strong>创建时间:</strong>
+								  <%= @acsystem.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+								</p>
+								<p>
+								  <strong>更新时间:</strong>
+								  <%= @acsystem.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+								</p>
+								<%= link_to 'Edit', edit_acsystem_path(@acsystem) %> |
+								<%= link_to 'Back', '/acsystem#index' %> | 
+							</ul>
+
+						</article>
+					</div>
+				</div>

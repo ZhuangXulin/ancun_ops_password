@@ -1,0 +1,63 @@
+				<div class="tabs">
+					<div id="tab-1" class="tab">
+						<article>
+							<div class="text-section">
+								<h1><p id="notice"><%= notice %></p></h1>
+							</div>
+							
+						<ul class="states" >
+							<%= form_tag '', :method => 'get' do %>
+							<p>
+							<%= text_field_tag :search_key, nil, placeholder: '请输入系统名称...', size: 30 %>
+							<%= submit_tag "Search", :name => nil %>
+							</p>
+							<% end %>
+						</ul>
+							<ul class="states" >
+								<h1>系统密码列表</h1>
+								<table width="100%">
+								  <thead>
+								    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+										<th width='5%'>序号</th>
+										<th width='20%'>系统名称</th>
+								      	<th witdh='25%'>系统IP地址</th>
+								      	<th width='15%'>创建时间</th>
+								      	<th width='15%'>更新时间</th>
+								      	<th width='20%' colspan="3">操作</th>
+								    </tr>
+								  </thead>
+
+								  <tbody>
+									  <% if @acsystem != nil %>
+								    <% @acsystem.each_with_index do |acsystem,i| %>
+								      <tr <%= if (i+1)%2 ==0
+								      	"style=background-Color:#F7F7F7"
+								      end%>>
+										<td align='center'><%= i+1 %></td>
+										<td align='center'><%= acsystem.system_name %></td>
+								        <td align='center'><%= acsystem.system_ip %></td>
+								        <td align='center'><%= acsystem.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+								        <td align='center'><%= acsystem.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+								        <td align='center'>
+								        	<%= link_to 'Show', acsystem %>&nbsp;
+								        	<%= link_to 'Edit', edit_acsystem_path(acsystem) %>&nbsp;
+								        	<%= link_to 'Destroy', acsystem, method: :delete, data: { confirm: 'Are you sure?' } %>
+								        </td>
+								      </tr>
+								    <% end %>
+									<% end %>
+								  </tbody>
+								</table>
+							</br>
+							
+  每页显示<b><%= @acsystem.per_page %></b>条数据,共有<b><%= @acsystem.total_pages %></b>页,  共有<b><%= @acsystem.total_entries %></b>条数据</br>
+  <%= will_paginate @acsystem, :container => false %>
+								<br>
+
+								<%= link_to '新增系统密码', 'acsystem/new' %>
+								<br>
+							</ul>
+
+						</article>
+					</div>
+				</div>
