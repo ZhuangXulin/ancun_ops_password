@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811215404) do
+ActiveRecord::Schema.define(version: 20160825084033) do
 
   create_table "acsystems", force: :cascade do |t|
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "system_name",     default: "", null: false
-    t.string   "system_desc",     default: ""
-    t.string   "system_ip",       default: ""
-    t.string   "system_password", default: "", null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "system_name",          default: "", null: false
+    t.string   "system_desc",          default: ""
+    t.string   "system_ip",            default: ""
+    t.string   "system_password",      default: "", null: false
+    t.string   "system_password_salt"
   end
 
   create_table "roles", force: :cascade do |t|

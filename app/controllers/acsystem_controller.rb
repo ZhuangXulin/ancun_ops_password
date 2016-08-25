@@ -23,17 +23,18 @@ class AcsystemController < ApplicationController
 
 	def edit
 		@acsystem = Acsystem.show(params[:id])
-    @acsystem["system_password"] = Base64.decode64(@acsystem.system_password).sub!(/fuck this is the password salt/, '')
+    @acsystem["system_password"] = Base64.decode64(@acsystem.system_password).sub!(/fuck this is the password salt/, '').sub!(@acsystem.system_password_salt,'')
     @action = :update
   end
 
   def update
   	@acsystem = Acsystem.show(params[:id])
+    password_salt = @acsystem.system_password_salt
   	respond_to do |format|
     		if @acsystem.update_attributes(:system_name => acsystem_params["system_name"],
                                       :system_desc => acsystem_params["system_desc"],
                                       :system_ip => acsystem_params["system_ip"],
-                                      :system_password => Base64.encode64(acsystem_params["system_password"]+'fuck this is the password salt')
+                                      :system_password => Base64.encode64(acsystem_params["system_password"]+'fuck this is the password salt'+password_salt)
                                       )
 	    		
           format.html { redirect_to acsystem_url, notice: 'System password was successfully updated.' }
@@ -53,7 +54,7 @@ class AcsystemController < ApplicationController
 
 	def show
     	@acsystem = Acsystem.show(params[:id])
-      @acsystem["system_password"] = Base64.decode64(@acsystem.system_password).sub!(/fuck this is the password salt/, '')
+      @acsystem["system_password"] = Base64.decode64(@acsystem.system_password).sub!(/fuck this is the password salt/, '').sub!(@acsystem.system_password_salt,'')
   end
 
 	private
